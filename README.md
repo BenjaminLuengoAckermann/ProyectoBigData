@@ -1,19 +1,14 @@
-# ISW_G5
-### Repositorio del grupo Numero 5
+# Big Data: Arquitecturas y Estrategias para el Analisis de Datos Masivos
+### Repositorio del grupo Numero 2
 
-#### Integrantes del grupo (Legajo, Apellido y Nombre, Usuario GitHub):
+#### Integrantes del grupo (Legajo - Apellido y Nombre):
 >
+>78698 - Carranza Duobaitis, Guadalupe
 >
->79873, Barbarán Gonzalo Manuel, gonzalobarbaran
+>78502 - Cornejo Ruata, Ángeles
 >
->79332, Lenta Ariel, arlel
+>79120 - Luengo Ackermann, Benjamín
 >
->80489, Leszezyñski Sebastián, seseseflip
->
->79120, Luengo Ackermann Benjamín, BenjaminLuengoAckermann
->
->78880, Neschisi Carlos Joaquín, Joaquin-N
->
->78500, Rostagno Leandro, lrostagno
+>78500 - Rostagno, Leandro
 
 
