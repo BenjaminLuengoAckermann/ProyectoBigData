@@ -6,6 +6,9 @@ import fuzzywuzzy
 from fuzzywuzzy import process
 import cleaning_module as cm
 import calculos_delitos as calculos
+import matplotlib.pyplot as plt
+import mapas as plot_map
+import franja_horaria as franja
 
 def ejecutar(ruta):
     # read in all our data
@@ -53,10 +56,12 @@ def ejecutar(ruta):
     # get all the unique values in the 'Barrio' column
     barrios = delitos['barrio'].unique()
 
+    delitos = franja.limpiar(delitos)
+
+    
 
 
-    # sort them alphabetically and then take a closer look
-    #barrios.sort()
+
     """print("\n ---- Barrios limpios ---- {}\n".format(len(barrios)))
     for barrio in barrios:
         print(barrio)"""
@@ -65,13 +70,31 @@ def ejecutar(ruta):
     for barrio in barrios:
         lista_barrios.append(delitos.loc[delitos.barrio == barrio])
 
-
     print("\n\t -------- Cantidad de delitos por barrio -------- \n")
 
-    acum, index_max, max = calculos.calcular_cantidad_delitos_por_barrio(lista_barrios=lista_barrios, barrios=barrios)
+    acum, index_max, max = calculos.calcular_cantidad_delitos_por_barrio(lista=lista_barrios, columna=barrios, 
+    mensaje="Cantidad de delitos en barrio ")
 
     total_delitos = delitos.barrio.shape[0]
     print("\nCantidad total de delitos: {} y la suma de delitos por barrio es: {}".format(total_delitos, acum))
     print("\nEl barrio con mas delitos {} con {} delitos".format(barrios[index_max].upper(),
                                                             max))
 
+    franja.ejecutar(delitos)
+
+
+    only_palermo = delitos.loc[delitos.barrio == "palermo"]
+    BBox = (only_palermo.longitud.min(), only_palermo.longitud.max(), 
+    only_palermo.latitud.min(), only_palermo.latitud.max())
+    #print(only_palermo.count())
+
+    print("\n Coordenadas maximas y minimas (definen mapa): {}".format(BBox))
+    ruh_m = plt.imread('C:\\Users\\Usuario\\Desktop\\Real Stuff\\2022\\Big Data\\map_refine.png')
+    fig, ax = plt.subplots(figsize = (8,7))
+    ax.scatter(only_palermo.longitud, only_palermo.latitud, zorder=1, alpha= 0.2, c='red', s=5)
+    #ax.scatter(delitos.long, delitos.lat, c=count)
+    ax.set_title('Distribucion de Delitos')
+    ax.set_xlim(BBox[0],BBox[1])
+    ax.set_ylim(BBox[2],BBox[3])
+    ax.imshow(ruh_m, zorder=0, extent = BBox, aspect= 'equal')
+    plt.show()
