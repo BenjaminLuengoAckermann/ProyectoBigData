@@ -1,4 +1,4 @@
-import common_libs_for_both.calculos_delitos as calculos
+import common_libs.calculos_delitos as calculos
 
 
 def limpiar(delitos):

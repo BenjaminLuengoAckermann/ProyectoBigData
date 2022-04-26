@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import fuzzywuzzy
 from fuzzywuzzy import process
-import common_libs_for_both.mapas as plot_map
+import common_libs.mapas as plot_map
 def ejecutar(ruta):
     # read in all our data
     subtes = pd.read_csv(ruta, index_col=False) 

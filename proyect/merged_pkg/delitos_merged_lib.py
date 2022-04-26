@@ -4,11 +4,11 @@ import pandas as pd
 import numpy as np
 import fuzzywuzzy
 from fuzzywuzzy import process
-import common_libs_for_both.cleaning_module as cm
-import common_libs_for_both.calculos_delitos as calculos
-import common_libs_for_both.mapas as plot_map
-import common_libs_for_both.franja_horaria as franja
-import common_libs_for_both.graficador as graficador
+import common_libs.cleaning_module as cm
+import common_libs.calculos_delitos as calculos
+import common_libs.mapas as plot_map
+import common_libs.franja_horaria as franja
+import common_libs.graficador as graficador
 import matplotlib.pyplot as plt
 
 

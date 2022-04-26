@@ -1,8 +1,14 @@
 import por_anio_pkg.delitos as deli
 import subtes as sub
+import os
 
-BASE_PATH = r"C:\\Users\\Usuario\\Desktop\\Real Stuff\\2022\\Big Data\\datasets\\delitos_"
-BASE_PATH_SUBTE = r"C:\\Users\\Usuario\\Desktop\\Real Stuff\\2022\\Big Data\\datasets\\estaciones-de-subte.csv"
+ABSOLUTE_PATH = os.path.abspath(__file__)
+FILE_DIRECTORY = os.path.dirname(ABSOLUTE_PATH)
+PARENT_DIRECTORY = os.path.dirname(FILE_DIRECTORY)
+
+
+BASE_PATH = PARENT_DIRECTORY + "\\datasets\\delitos_"
+BASE_PATH_SUBTE = PARENT_DIRECTORY + "\\datasets\\estaciones-de-subte.csv"
 
 #print("\n ----------- 2020 --------------- \n")
 #deli.ejecutar(BASE_PATH + "2020.csv", "2020")

@@ -3,11 +3,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 from sklearn.preprocessing import OneHotEncoder
 from xgboost import XGBRegressor
-
+import os
+import common_libs.franja_horaria as franja
 # Read the data
-BASE_PATH = r"C:\\Users\\Usuario\\Desktop\\Real Stuff\\2022\\Big Data\\datasets\\delitos_merged.csv"
+ABSOLUTE_PATH = os.path.abspath(__file__)
+FILE_DIRECTORY = os.path.dirname(ABSOLUTE_PATH)
+PARENT_DIRECTORY = os.path.dirname(FILE_DIRECTORY)
+
+BASE_PATH = PARENT_DIRECTORY + "\\datasets\\delitos_merged.csv"
 data = pd.read_csv(BASE_PATH, index_col=False)
 print(data.head())
+data = franja.limpiar(data)
 
 # Select target
 y = data.franja_horaria
@@ -62,3 +68,4 @@ my_model.fit(OH_X_train, y_train,
 
 predictions = my_model.predict(OH_X_valid)
 print("Mean Absolute Error: " + str(mean_absolute_error(predictions, y_valid)))
+print(predictions)
