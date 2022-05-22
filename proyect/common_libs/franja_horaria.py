@@ -32,7 +32,7 @@ def ejecutar(delitos):
     total_delitos = delitos.franja_horaria.shape[0]
 
     #print("\nCantidad total de delitos: {} y la suma de delitos por barrio es: {}".format(total_delitos, acum))
-    print("\n La franja horaria con mas delitos es {} hs con {} delitos".format(franja_horaria[index_max].upper(),
+    print("\n La franja horaria con mas delitos es {} hs con {} delitos".format(str(franja_horaria[index_max]).upper(),
                                                             max))
 
     return dict

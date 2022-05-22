@@ -1,14 +1,17 @@
-import por_anio_pkg.delitos as deli
-import subtes as sub
+import sys
 import os
-
 ABSOLUTE_PATH = os.path.abspath(__file__)
 FILE_DIRECTORY = os.path.dirname(ABSOLUTE_PATH)
 PARENT_DIRECTORY = os.path.dirname(FILE_DIRECTORY)
+sys.path.insert(0, PARENT_DIRECTORY )
+import por_anio_pkg.delitos as deli
+import subtes as sub
 
+# La ruta que contiene tanto los proyectos como los datasets
+CONTAINER_DIRECTORY = os.path.dirname(PARENT_DIRECTORY)
 
-BASE_PATH = PARENT_DIRECTORY + "\\datasets\\delitos_"
-BASE_PATH_SUBTE = PARENT_DIRECTORY + "\\datasets\\estaciones-de-subte.csv"
+BASE_PATH = CONTAINER_DIRECTORY + "\\datasets\\delitos_"
+BASE_PATH_SUBTE = CONTAINER_DIRECTORY + "\\datasets\\estaciones-de-subte.csv"
 
 #print("\n ----------- 2020 --------------- \n")
 #deli.ejecutar(BASE_PATH + "2020.csv", "2020")

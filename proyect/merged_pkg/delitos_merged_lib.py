@@ -1,4 +1,10 @@
-# modules we'll use
+import sys
+import os
+ABSOLUTE_PATH = os.path.abspath(__file__)
+FILE_DIRECTORY = os.path.dirname(ABSOLUTE_PATH)
+PARENT_DIRECTORY = os.path.dirname(FILE_DIRECTORY)
+sys.path.insert(0, PARENT_DIRECTORY)
+
 from cmath import nan
 import pandas as pd
 import numpy as np
@@ -57,7 +63,7 @@ def ejecutar(ruta):
     # get all the unique values in the 'Barrio' column
     barrios = delitos['barrio'].unique()
 
-    delitos = franja.limpiar(delitos)
+    #delitos = franja.limpiar(delitos)
 
     
 
@@ -128,3 +134,41 @@ def ejecutar(ruta):
  
     graficador.graficar_pie(diccionario=dict, column_name="delitos", 
         titulo_grafico="Grafico de Tipos de Delito")
+
+    
+    # get all the unique values in the 'estacion' column
+    estaciones = delitos['estacion'].unique()
+    lista_estaciones = []
+    for estacion in estaciones:
+        lista_estaciones.append(delitos.loc[delitos.estacion == estacion])
+
+    acum, index_max, max, dict = calculos.calcular_cantidad_delitos_por_columna(lista=lista_estaciones, columna=estaciones, 
+    mensaje="Cantidad de delitos en la estación ")
+
+    print("\n\t -------- Cantidad de delitos por estacion del año -------- \n")
+    total_delitos = delitos.estacion.shape[0]
+    print("\nCantidad total de delitos: {} y la suma de delitos por estacion del año es: {}".format(total_delitos, acum))
+    print("\nLa estacion con mas delitos fue {} con {} delitos".format(estaciones[index_max],
+                                                            max))
+ 
+    graficador.graficar_pie(diccionario=dict, column_name="delitos", 
+        titulo_grafico="Grafico de Delitos por Estacion")
+
+
+# get all the unique values in the 'dia' column
+    dias = delitos['dia'].unique()
+    lista_dias = []
+    for dia in dias:
+        lista_dias.append(delitos.loc[delitos.dia == dia])
+
+    acum, index_max, max, dict = calculos.calcular_cantidad_delitos_por_columna(lista=lista_dias, columna=dias, 
+    mensaje="Cantidad de delitos en el dia ")
+
+    print("\n\t -------- Cantidad de delitos por dias del año -------- \n")
+    total_delitos = delitos.dia.shape[0]
+    print("\nCantidad total de delitos: {} y la suma de delitos por dias del año es: {}".format(total_delitos, acum))
+    print("\nEl dia con mas delitos fue {} con {} delitos".format(dias[index_max],
+                                                            max))
+ 
+    graficador.graficar_pie(diccionario=dict, column_name="delitos", 
+        titulo_grafico="Grafico de Delitos por Dia")

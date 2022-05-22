@@ -29,3 +29,34 @@ def limpiar(df, column):
     # eliminar los NaN
     df = df.dropna(subset=[column], how="all")
     return df
+
+def limpiar_text_sd(df, column):
+
+    print("Cantidad de delitos x franja previo a limpiar {}".format(df[column].shape[0]))
+
+    df[column] = df[column].str.strip()
+    #Se eliminan tanto NaNs como valores desconocidos
+    if(column == "franja_horaria"):
+        df = df.dropna(subset=[column], how="all")
+    df.drop(df[df[column] == "S/D"].index, inplace=True) 
+    df.drop(df[df[column] == "SD"].index, inplace=True) 
+
+    return df
+
+def limpiar_mayor_menor_a_un_value(df, column, mayor, menor):
+    flag = False
+    print("Cantidad de delitos por {} previo a limpiar {}".format(column, df[column].shape[0]))
+    while flag == False: 
+        try:
+            df[column] = df[column].astype(float)
+            #Se eliminan tanto NaNs como valores desconocidos
+            df.drop(df[df[column] > mayor].index, inplace=True) 
+            df.drop(df[df[column] < menor].index, inplace=True)
+            flag = True
+        except:
+            #df[column] = df[column].str.strip()
+            df.drop(df[df[column] == "S/D"].index, inplace=True) 
+            df.drop(df[df[column] == "SD"].index, inplace=True)
+
+    print("Cantidad de delitos por {} POSTERIOR a limpiar {}".format(column, df[column].shape[0]))
+    return df
