@@ -3,6 +3,7 @@ import os
 import common_libs.cleaning_module as cleaning
 import common_libs.add_columns as add_columns
 
+# Script para agregar columnas al dataset y luego exportarlo
 
 # Read the data
 ABSOLUTE_PATH = os.path.abspath(__file__)
